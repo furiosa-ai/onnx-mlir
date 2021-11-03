@@ -365,7 +365,7 @@ struct KrnlBuilder : public DialectBuilder {
   Value strlen(Value str) const;
 
   // Onnx-mlir runtime functions.
-  Value findIndex(Value input, Value G, Value V) const;
+  Value findIndex(Value input, Value G, Value V, Value len) const;
 };
 
 //====---------------- Common helper functions --------------------------===//

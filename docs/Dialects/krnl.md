@@ -350,6 +350,7 @@ The index returned is valid only if 'input' is in the dictionary described by G 
 `input` | string type or 64-bit signless integer
 `G` | memref of 32-bit signless integer values
 `V` | memref of 32-bit signless integer values
+`len` | 32-bit signless integer
 
 #### Results:
 

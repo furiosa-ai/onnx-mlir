@@ -1045,6 +1045,6 @@ def KrnlFindIndexOp : Op<Krnl_Dialect, "find_index",
     The index returned is valid only if 'input' is in the dictionary described by G and V.
   }];
 
-  let arguments = (ins AnyTypeOf<[StringType, I64]>:$input, I32MemRef:$G, I32MemRef:$V);
+  let arguments = (ins AnyTypeOf<[StringType, I64]>:$input, I32MemRef:$G, I32MemRef:$V, I32:$len);
   let results = (outs Index:$index);
 }

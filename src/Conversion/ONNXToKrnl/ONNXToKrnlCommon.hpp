@@ -4,7 +4,7 @@
 
 //====------ ONNXToKrnlCommon.hpp - ONNX dialects to Krnl lowering --------===//
 //
-// Copyright 2019 The IBM Research Authors.
+// Copyright 2019-2021 The IBM Research Authors.
 //
 // =============================================================================
 //

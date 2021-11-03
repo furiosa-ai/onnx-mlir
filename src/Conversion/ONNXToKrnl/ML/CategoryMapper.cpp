@@ -31,6 +31,7 @@ struct ONNXCategoryMapperOpLowering : public ConversionPattern {
   using PerfectHashTable = struct {
     Value G;
     Value V;
+    Value len;
   };
 
   ONNXCategoryMapperOpLowering(MLIRContext *ctx)
@@ -167,6 +168,7 @@ private:
       DenseElementsAttr cats_strings, ArrayAttr cats_int64s_ArrayAttr,
       ArrayAttr cats_strings_ArrayAttr, Type elementType,
       const KrnlBuilder &createKrnl) const {
+    MathBuilder createMath(const_cast<KrnlBuilder &>(createKrnl));
     OpBuilder builder = createKrnl.getBuilder();
     PerfectHashTable res;
 
@@ -179,6 +181,7 @@ private:
           {static_cast<int64_t>(V.size())}, builder.getIntegerType(32));
       res.G = createKrnl.constant(type, "G", builder.getI32VectorAttr(G));
       res.V = createKrnl.constant(type, "V", builder.getI32VectorAttr(V));
+      res.len = createMath.constant(builder.getIntegerType(32), G.size());
       return res;
     };
 
@@ -225,7 +228,7 @@ private:
       Value constantForCatsStrings, const KrnlBuilder &createKrnl) const {
     MathBuilder createMath(const_cast<KrnlBuilder &>(createKrnl));
     OpBuilder builder = createKrnl.getBuilder();
-    Value index = createKrnl.findIndex(inputElem, pHash.G, pHash.V);
+    Value index = createKrnl.findIndex(inputElem, pHash.G, pHash.V, pHash.len);
 
     std::tuple<Value, Value> res;
     TypeSwitch<Type>(elementType)

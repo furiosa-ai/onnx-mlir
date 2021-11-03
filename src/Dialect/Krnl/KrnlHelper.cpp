@@ -535,8 +535,8 @@ Value KrnlBuilder::strlen(Value str) const {
   return b.create<KrnlStrlenOp>(loc, b.getI64Type(), str);
 }
 
-Value KrnlBuilder::findIndex(Value input, Value G, Value V) const {
-  return b.create<KrnlFindIndexOp>(loc, b.getIndexType(), input, G, V);
+Value KrnlBuilder::findIndex(Value input, Value G, Value V, Value len) const {
+  return b.create<KrnlFindIndexOp>(loc, b.getIndexType(), input, G, V, len);
 }
 
 bool isKrnlGlobalConstant(Value result) {

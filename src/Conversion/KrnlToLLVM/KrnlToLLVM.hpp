@@ -12,16 +12,13 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef KRNL_TO_LLVM_H
-#define KRNL_TO_LLVM_H
+#pragma once
 
 #include "mlir/Conversion/StandardToLLVM/ConvertStandardToLLVM.h"
 
 namespace mlir {
 
 class MLIRContext;
-class LLVMTypeConverter;
-
 class RewritePatternSet;
 
 void checkConstantOutputs(
@@ -32,5 +29,3 @@ void populateAffineAndKrnlToLLVMConversion(RewritePatternSet &patterns,
     ArrayRef<bool> constantOutputs);
 
 } // namespace mlir
-
-#endif // KRNL_TO_LLVM_H
